@@ -4,7 +4,7 @@
     import { ask } from "@tauri-apps/plugin-dialog";
 
     let fileName = "";
-    let filePath = "";
+    let path = "";
     let password = "";
 
     async function pickFile() {
@@ -15,13 +15,13 @@
 
         if (file) {
             fileName = file.name as string;
-            filePath = file.path;
+            path = file.path;
         }
     }
 
     async function submitFileEncryption() {
-        // TODO: save to pass password as a plain text via IPC?
-        await invoke("encrypt_file", { path: filePath, password });
+        // TODO: is it save to pass password as a plain text via IPC?
+        await invoke("encrypt_file", { path, password });
     }
 </script>
 
